@@ -1,4 +1,4 @@
- The-opening-of-a-store-s-doors
+ The-opening of a store's doors
 
 
  This project represents an automatic door system for a store, utilizing two servomotors and a proximity or distance sensor to open and close the doors automatically.
