@@ -22,6 +22,9 @@ I believe this project is valuable because it demonstrates the practical applica
 
 ---
 
+#### Software design :
+I will be using PlatformIO IDE for VSCode.
+
 ## How It Works
 1. The proximity or distance sensor detects movement near the door.
 2. The microcontroller processes the sensor's input and sends signals to the servomotors.
