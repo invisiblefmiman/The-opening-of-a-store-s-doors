@@ -34,20 +34,34 @@ Sensors
 
 -1x PIR Motion Sensor or HC-SR04 Ultrasonic Sensor
 Actuators
+
 -2x Servomotors (e.g., SG90 or MG995)
 Microcontroller
+
 -1x Arduino Uno, ESP32, or ESP8266
 Power Supply
+
 -1x 9V Battery or DC Power Adapter
+
 -1x 5V Voltage Regulator (e.g., LM7805)
+
 -1x Breadboard or PCB
+
 -Jumper Wires
+
 -Resistors (e.g., 330Ω)
+
 -Capacitors (e.g., 100µF)
+
 -Diodes (e.g., 1N4007)
+
 Optional Components
+
 -Relay Module
+
 -2x LEDs
+
+
 -1x Passive Buzzer
 
 ---
