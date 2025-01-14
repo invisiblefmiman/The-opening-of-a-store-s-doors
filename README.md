@@ -74,10 +74,6 @@ Optional Components
 
 ---
 
-## Future Improvements
-- Add Wi-Fi control for remote operation.
-- Integrate voice commands for accessibility.
-- Use a more advanced sensor for higher precision.
 
 
 ---
@@ -92,8 +88,3 @@ I will be using PlatformIO IDE for VSCode.
 4. After a delay, the servomotors return to their initial position, closing the doors.
 
 ---
-
-## Future Improvements
-- Add Wi-Fi control for remote operation.
-- Integrate voice commands for accessibility.
-- Use a more advanced sensor for higher precision.
