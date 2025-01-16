@@ -1,51 +1,64 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-Servo servo1;
-int trigPin = 9;
-int echoPin = 8;
-int becPin = 6;
-long duration;
-long distance;
+Servo servomotor;
+int pinEmitatorUltrasonic = 9;
+int pinReceptorUltrasonic = 8;
+int pinButon = 3;
+int pinLedAlbastru = 12;
+int pinLedRosu = 2;
+int pinLedAlb = 6;
+long durataPulsului = 0;
+long distanta = 0;
 
-void ultra_sonic();
+void citesteSenzorUltrasonic();
 
 void setup() {
-  servo1.attach(7);
-  pinMode(trigPin, OUTPUT);
-  pinMode(echoPin, INPUT);
-  pinMode(becPin, OUTPUT);
-  pinMode(12, OUTPUT);
-  pinMode(2, OUTPUT);
+    servomotor.attach(7);
+    pinMode(pinEmitatorUltrasonic, OUTPUT);
+    pinMode(pinReceptorUltrasonic, INPUT);
+    pinMode(pinLedAlbastru, OUTPUT);
+    pinMode(pinLedRosu, OUTPUT);
+    pinMode(pinButon, INPUT_PULLUP);
+    pinMode(pinLedAlb, OUTPUT);
 
-  digitalWrite(becPin, HIGH);
-  Serial.begin(9600);
+    digitalWrite(pinLedRosu, HIGH);
+
+    Serial.begin(9600);
 }
 
 void loop() {
-  ultra_sonic();
-  Serial.print("Distance: ");
-  Serial.println(distance);
-  digitalWrite(12, LOW);
-  digitalWrite(2, HIGH);
+    citesteSenzorUltrasonic();
 
-  servo1.write(90);
+    if (digitalRead(pinButon) == LOW) {
+        digitalWrite(pinLedAlbastru, HIGH);
+        digitalWrite(pinLedAlb, HIGH);
+        digitalWrite(pinLedRosu, LOW);
+        servomotor.write(0);
+    } else {
+        if (distanta > 0 && distanta <= 9) {
+            servomotor.write(0);
+            digitalWrite(pinLedAlbastru, HIGH);
+            digitalWrite(pinLedRosu, LOW);
+            digitalWrite(pinLedAlb, LOW);
+        } else {
+            servomotor.write(90);
+            digitalWrite(pinLedAlbastru, LOW);
+            digitalWrite(pinLedRosu, HIGH);
+            digitalWrite(pinLedAlb, LOW);
+        }
+    }
 
-  if (distance <= 9 && distance > 0) {
-    servo1.write(0);
-    digitalWrite(12, HIGH);
-    digitalWrite(2, LOW);
-  }
-  delay(1900);
+    delay(500);
 }
 
-void ultra_sonic() {
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
+void citesteSenzorUltrasonic() {
+    digitalWrite(pinEmitatorUltrasonic, LOW);
+    delayMicroseconds(2);
+    digitalWrite(pinEmitatorUltrasonic, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(pinEmitatorUltrasonic, LOW);
 
-  duration = pulseIn(echoPin, HIGH);
-  distance = duration * 0.034 / 2;
+    durataPulsului = pulseIn(pinReceptorUltrasonic, HIGH);
+    distanta = durataPulsului * 0.034 / 2;
 }
